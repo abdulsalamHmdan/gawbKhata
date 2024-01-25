@@ -22,27 +22,27 @@ socket.on('clickButton', (data) => {
 	document.querySelector(data).click();
 })
 socket.on('insert', (data) => {
-	let n = [data[0], data[1], Math.random()]
+	let n = [data[0], data[1],data[2], Math.random()]
 	ch.push(n)
 	// console.log(n);
 })
 
 
 socket.on('insert2', (data) => {
-	let n = [data[0], data[1]]
+	let n = [data[0],data[1], data[2],data[3]]
 	answer.push(n)
 	// console.log(n);
 })
 
 document.querySelector("#b1").addEventListener('click', () => {
-	qu = question.splice(0, 1)[0];
+	qu = question.splice(Math.floor(Math.random() * question.length), 1)[0];
 	console.log(qu)
 	ch = []
 	answer = []
 	document.querySelector(".choices").innerText = '';
 	document.querySelector(".result").innerHTML = ''
 	document.querySelector(".qustion h1").innerText = qu[0];
-	let n = ["x", qu[1], Math.random()];
+	let n = ["x","الجواب الصحيح" ,qu[1], Math.random()];
 	ch.push(n)
 	socket.emit("go")
 	// console.log(n)
@@ -50,14 +50,14 @@ document.querySelector("#b1").addEventListener('click', () => {
 
 document.querySelector("#b2").addEventListener('click', () => {
 	ch = ch.sort((a, b) => {
-		return a[2] - b[2];
+		return a[3] - b[3];
 	})
 
 	document.querySelector(".choices").innerText = '';
 	console.log(ch)
 	ch.forEach(x => {
 		document.querySelector(".choices").innerHTML += `<div class="choic">
-		<h2>${x[1]}</h2>
+		<h2>${x[2]}</h2>
 	</div>`
 	})
 	answer = [];
@@ -70,10 +70,10 @@ document.querySelector("#b3").addEventListener('click', () => {
 	console.log(answer)
 	answer.forEach(x => {
 		if (x[1] == 'x') {
-			document.querySelector(".result").innerHTML += `<div class="ans green"><h2>${x[0]} <span> ===> </span> ${x[1]}</h2></div>`
+			document.querySelector(".result").innerHTML += `<div class="ans green"><h2>${x[3]} <span> ===> </span> ${x[2]}</h2></div>`
 			document.querySelector(`.${x[0]} .sumScore`).innerText = +document.querySelector(`.${x[0]} .sumScore`).innerText + 50
 		} else {
-			document.querySelector(".result").innerHTML += `<div class="ans red"><h2>${x[0]} <span> ===> </span> ${x[1]}</h2></div>`
+			document.querySelector(".result").innerHTML += `<div class="ans red"><h2>${x[3]} <span> ===> </span> ${x[2]}</h2></div>`
 			document.querySelector(`.${x[1]} .sumScore`).innerText = +document.querySelector(`.${x[1]} .sumScore`).innerText + 20
 
 		}

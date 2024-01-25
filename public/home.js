@@ -8,7 +8,7 @@ socket.emit("jo", id, "player")
 socket.emit("showMe", id, name)
 button.addEventListener('click', () => {
 	let s = document.querySelector('.inp input').value;
-	socket.emit("insert", [id, s, Math.random()])
+	socket.emit("insert", [id,name, s, Math.random()])
 	document.querySelector('.inp input').value = '';
 	document.querySelector("body").className = 'waiting';
 
@@ -31,11 +31,11 @@ socket.on('show', (ch) => {
 		choic = document.createElement('div')
 		choic.className = 'choic'
 		title = document.createElement('h2')
-		title.innerText = x[1];
+		title.innerText = x[2];
 		choic.appendChild(title)
 		choic.addEventListener('click', () => {
 			if (confirm("هل انت متأكد")) {
-				socket.emit("insert2", [id, x[0]])
+				socket.emit("insert2", [id, x[0],x[1],name])
 				document.querySelector(".choose").innerText = '';
 				document.querySelector("body").className = 'waiting';
 

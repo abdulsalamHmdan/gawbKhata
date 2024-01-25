@@ -17,13 +17,15 @@ body {
     align-items: center;
     gap: 50px;
 }
-
+.but{
+    display: none;
+}
 .qustion {
     min-width: 90vw;
     border: 1px black solid;
     text-align: center;
     border-radius: 7px;
-    box-shadow: 2px -3px 8px 3px;
+    box-shadow: 0 0 20px 0px;
 
 }
 
@@ -40,7 +42,7 @@ body {
     /* box-shadow: 2px -3px 8px 3px; */
     
     
-    /* gap: 6px; */
+    gap: 6px;
 }
 
 .choic {
