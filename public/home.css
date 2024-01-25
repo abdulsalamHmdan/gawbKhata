@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.inp,
+.choose,
+.popup {
+
+    display: none;
+}
+
+body.waiting .popup {
+    display: flex;
+}
+
+body.inserting .inp {
+    display: flex;
+}
+
+body.select .choose {
+    display: flex;
+}
+
+body,
+html,
+.popup,
+.choose,
+.inp {
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup img {
+    width: 90vw;
+    height: 60vh;
+}
+
+.popup,
+.inp,
+.choose {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.choic {
+    border: 1px black solid;
+    border-radius: 5px;
+    width: 60vw;
+    text-align: center;
+}
