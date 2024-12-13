@@ -1,6 +1,9 @@
 var socket = io();
-let name = prompt("Please enter your name:");
-let id = prompt("enter your id", "p1");
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('myparam');
+let name = {p1:"1",p2:"2",p3:"3",p4:"4"}[myParam]
+let id = myParam;
+console.log(myParam)
 let button = document.querySelector('.inp button')
 document.querySelector("title").innerText = id;
 socket.emit("jo", id, "player")
@@ -46,14 +49,3 @@ socket.on('show', (ch) => {
 	document.querySelector("body").className = 'select';
 
 })
-
-
-
-
-
-
-
-// socket.on('load', () => {
-// 	console.log("a")
-
-// })

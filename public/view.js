@@ -3,15 +3,25 @@ let qu = [];
 let ch = [];
 let answer = [];
 
-// socket.on('a', () => {
-// 	console.log("a")
-// })
-// socket.on('b', () => {
-// 	console.log("b")
-// })
-// socket.on('c', () => {
-// 	console.log("c")
-// })
+socket.on('del1', (id) => {
+	let i = ch.findIndex(x => x[0] == id)
+	ch.splice(i, 1);
+	console.log("delet1")
+	console.log(id)
+	console.log(ch)
+})
+
+socket.on('del2', (id, newAns) => {
+	ch.forEach(x => {
+		if (x[0] == id) {
+			x[2] = newAns
+		}
+	})
+	console.log("change2")
+	console.log(id)
+	console.log(ch)
+})
+
 
 socket.emit("jo", "me", "view")
 
@@ -22,14 +32,14 @@ socket.on('clickButton', (data) => {
 	document.querySelector(data).click();
 })
 socket.on('insert', (data) => {
-	let n = [data[0], data[1],data[2], Math.random()]
+	let n = [data[0], data[1], data[2], Math.random()]
 	ch.push(n)
 	// console.log(n);
 })
 
 
 socket.on('insert2', (data) => {
-	let n = [data[0],data[1], data[2],data[3]]
+	let n = [data[0], data[1], data[2], data[3]]
 	answer.push(n)
 	// console.log(n);
 })
@@ -42,7 +52,7 @@ document.querySelector("#b1").addEventListener('click', () => {
 	document.querySelector(".choices").innerText = '';
 	document.querySelector(".result").innerHTML = ''
 	document.querySelector(".qustion h1").innerText = qu[0];
-	let n = ["x","الجواب الصحيح" ,qu[1], Math.random()];
+	let n = ["x", "الجواب الصحيح", qu[1], Math.random()];
 	ch.push(n)
 	socket.emit("go")
 	// console.log(n)

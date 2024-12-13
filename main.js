@@ -36,13 +36,10 @@ app.get('/qr', (req, res) => {
 
 
 io.on('connection', (socket) => {
-    // socket.emit("a")
-    // io.emit("b")
-    // socket.broadcast.emit("c")
-
     socket.on('clickButton', (data) => {
         socket.to("view").emit("clickButton", data);
     })
+
     socket.on('jo', (id, cl) => {
         socket.join(id);
         socket.join(cl);
@@ -58,12 +55,20 @@ io.on('connection', (socket) => {
     socket.on('insert', (data) => {
         socket.to("me").emit("insert", data);
     })
+
     socket.on('insert2', (data) => {
         socket.to("me").emit("insert2", data);
     })
+    
+    socket.on('del1', (data) => {
+        socket.to("view").emit("del1", data);
+    })
+    socket.on('del2', (data,x) => {
+        socket.to("view").emit("del2", data,x);
+    })
 
-    socket.on('showMe', (a,b) => {
-        socket.to("me").emit("showMe", a,b);
+    socket.on('showMe', (a, b) => {
+        socket.to("me").emit("showMe", a, b);
     })
 
 
@@ -74,10 +79,3 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT || port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
-
-
-
-
-// socket.emit("a")  لي فقط
-// io.emit("b") للجميع
-// socket.broadcast.emit("c") للجميع الا انا
