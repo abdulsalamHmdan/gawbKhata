@@ -36,6 +36,12 @@ app.get('/qr', (req, res) => {
 
 
 io.on('connection', (socket) => {
+
+    // socket.on('disconnect', function () {
+    //     socket.emit('disconnected');  
+    // });
+
+
     socket.on('clickButton', (data) => {
         socket.to("view").emit("clickButton", data);
     })

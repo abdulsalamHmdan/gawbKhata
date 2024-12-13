@@ -1,7 +1,7 @@
 var socket = io();
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('myparam');
-let name = {p1:"1",p2:"2",p3:"3",p4:"4"}[myParam]
+let name = {p1:"خالد بن الوليد",p2:"سعد بن أبي وقاص",p3:"عمرو بن العاص",p4:"حمزة بن عبدالمطلب"}[myParam]
 let id = myParam;
 console.log(myParam)
 let button = document.querySelector('.inp button')
